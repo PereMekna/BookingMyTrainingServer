@@ -12,10 +12,10 @@ public class MatchPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idinternshipoffer;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtrainee;
 
 	public MatchPK() {

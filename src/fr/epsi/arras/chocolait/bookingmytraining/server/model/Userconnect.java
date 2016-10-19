@@ -2,7 +2,6 @@ package fr.epsi.arras.chocolait.bookingmytraining.server.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -11,12 +10,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="userconnect")
-@NamedQuery(name="Userconnect.findAll", query="SELECT u FROM Userconnect u")
-public class Userconnect implements Serializable {
+@NamedQuery(name="UserConnect.findAll", query="SELECT u FROM UserConnect u")
+public class UserConnect implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USERCONNECT_IDUSERCONNECT_GENERATOR", sequenceName="USERCONNECT_IDUSERCONNECT_SEQ")
+	@SequenceGenerator(name="USERCONNECT_IDUSERCONNECT_GENERATOR", sequenceName="USERCONNECT_IDUSERCONNECT_SEQ", initialValue=1000, allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USERCONNECT_IDUSERCONNECT_GENERATOR")
 	@Column(unique=true, nullable=false)
 	private Integer iduserconnect;
@@ -27,15 +26,10 @@ public class Userconnect implements Serializable {
 	@Column(length=255)
 	private String hashpwd;
 
-	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="userconnect")
-	private List<Employee> employees;
+	@Column(length=255)
+	private String mail;
 
-	//bi-directional many-to-one association to Trainee
-	@OneToMany(mappedBy="userconnect")
-	private List<Trainee> trainees;
-
-	public Userconnect() {
+	public UserConnect() {
 	}
 
 	public Integer getIduserconnect() {
@@ -62,48 +56,12 @@ public class Userconnect implements Serializable {
 		this.hashpwd = hashpwd;
 	}
 
-	public List<Employee> getEmployees() {
-		return this.employees;
+	public String getMail() {
+		return this.mail;
 	}
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
-
-	public Employee addEmployee(Employee employee) {
-		getEmployees().add(employee);
-		employee.setUserconnect(this);
-
-		return employee;
-	}
-
-	public Employee removeEmployee(Employee employee) {
-		getEmployees().remove(employee);
-		employee.setUserconnect(null);
-
-		return employee;
-	}
-
-	public List<Trainee> getTrainees() {
-		return this.trainees;
-	}
-
-	public void setTrainees(List<Trainee> trainees) {
-		this.trainees = trainees;
-	}
-
-	public Trainee addTrainee(Trainee trainee) {
-		getTrainees().add(trainee);
-		trainee.setUserconnect(this);
-
-		return trainee;
-	}
-
-	public Trainee removeTrainee(Trainee trainee) {
-		getTrainees().remove(trainee);
-		trainee.setUserconnect(null);
-
-		return trainee;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 }

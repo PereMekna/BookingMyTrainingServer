@@ -3,7 +3,6 @@ package fr.epsi.arras.chocolait.bookingmytraining.server.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -12,13 +11,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="internshipoffer")
-@NamedQuery(name="Internshipoffer.findAll", query="SELECT i FROM Internshipoffer i")
-public class Internshipoffer implements Serializable {
+@NamedQuery(name="Internshipoffer.findAll", query="SELECT i FROM InternshipOffer i")
+public class InternshipOffer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="INTERNSHIPOFFER_IDINTERNSHIPOFFER_GENERATOR", sequenceName="INTERNSHIPOFFER_IDINTERNSHIPOFFER_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INTERNSHIPOFFER_IDINTERNSHIPOFFER_GENERATOR")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true, nullable=false)
 	private Integer idinternshipoffer;
 
@@ -29,6 +27,8 @@ public class Internshipoffer implements Serializable {
 	private String description;
 
 	private Boolean finished;
+
+	private Integer idemployee;
 
 	@Column(nullable=false, length=255)
 	private String jobtitle;
@@ -46,28 +46,7 @@ public class Internshipoffer implements Serializable {
 
 	private Integer traineenb;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="idemployee")
-	private Employee employee;
-
-	//bi-directional many-to-one association to Internshipofferview
-	@OneToMany(mappedBy="internshipoffer")
-	private List<Internshipofferview> internshipofferviews;
-
-	//bi-directional many-to-one association to Internshipreview
-	@OneToMany(mappedBy="internshipoffer")
-	private List<Internshipreview> internshipreviews;
-
-	//bi-directional many-to-one association to Match
-	@OneToMany(mappedBy="internshipoffer")
-	private List<Match> matches;
-
-	//bi-directional many-to-one association to Tagdistribution
-	@OneToMany(mappedBy="internshipoffer")
-	private List<Tagdistribution> tagdistributions;
-
-	public Internshipoffer() {
+	public InternshipOffer() {
 	}
 
 	public Integer getIdinternshipoffer() {
@@ -100,6 +79,14 @@ public class Internshipoffer implements Serializable {
 
 	public void setFinished(Boolean finished) {
 		this.finished = finished;
+	}
+
+	public Integer getIdemployee() {
+		return this.idemployee;
+	}
+
+	public void setIdemployee(Integer idemployee) {
+		this.idemployee = idemployee;
 	}
 
 	public String getJobtitle() {
@@ -148,102 +135,6 @@ public class Internshipoffer implements Serializable {
 
 	public void setTraineenb(Integer traineenb) {
 		this.traineenb = traineenb;
-	}
-
-	public Employee getEmployee() {
-		return this.employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public List<Internshipofferview> getInternshipofferviews() {
-		return this.internshipofferviews;
-	}
-
-	public void setInternshipofferviews(List<Internshipofferview> internshipofferviews) {
-		this.internshipofferviews = internshipofferviews;
-	}
-
-	public Internshipofferview addInternshipofferview(Internshipofferview internshipofferview) {
-		getInternshipofferviews().add(internshipofferview);
-		internshipofferview.setInternshipoffer(this);
-
-		return internshipofferview;
-	}
-
-	public Internshipofferview removeInternshipofferview(Internshipofferview internshipofferview) {
-		getInternshipofferviews().remove(internshipofferview);
-		internshipofferview.setInternshipoffer(null);
-
-		return internshipofferview;
-	}
-
-	public List<Internshipreview> getInternshipreviews() {
-		return this.internshipreviews;
-	}
-
-	public void setInternshipreviews(List<Internshipreview> internshipreviews) {
-		this.internshipreviews = internshipreviews;
-	}
-
-	public Internshipreview addInternshipreview(Internshipreview internshipreview) {
-		getInternshipreviews().add(internshipreview);
-		internshipreview.setInternshipoffer(this);
-
-		return internshipreview;
-	}
-
-	public Internshipreview removeInternshipreview(Internshipreview internshipreview) {
-		getInternshipreviews().remove(internshipreview);
-		internshipreview.setInternshipoffer(null);
-
-		return internshipreview;
-	}
-
-	public List<Match> getMatches() {
-		return this.matches;
-	}
-
-	public void setMatches(List<Match> matches) {
-		this.matches = matches;
-	}
-
-	public Match addMatch(Match match) {
-		getMatches().add(match);
-		match.setInternshipoffer(this);
-
-		return match;
-	}
-
-	public Match removeMatch(Match match) {
-		getMatches().remove(match);
-		match.setInternshipoffer(null);
-
-		return match;
-	}
-
-	public List<Tagdistribution> getTagdistributions() {
-		return this.tagdistributions;
-	}
-
-	public void setTagdistributions(List<Tagdistribution> tagdistributions) {
-		this.tagdistributions = tagdistributions;
-	}
-
-	public Tagdistribution addTagdistribution(Tagdistribution tagdistribution) {
-		getTagdistributions().add(tagdistribution);
-		tagdistribution.setInternshipoffer(this);
-
-		return tagdistribution;
-	}
-
-	public Tagdistribution removeTagdistribution(Tagdistribution tagdistribution) {
-		getTagdistributions().remove(tagdistribution);
-		tagdistribution.setInternshipoffer(null);
-
-		return tagdistribution;
 	}
 
 }

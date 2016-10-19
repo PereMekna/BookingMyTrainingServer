@@ -2,7 +2,6 @@ package fr.epsi.arras.chocolait.bookingmytraining.server.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -12,14 +11,15 @@ import java.util.List;
 @Entity
 @Table(name="employee")
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
-public class Employee implements Serializable {
+public class Employee extends UserAbstract implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="EMPLOYEE_IDEMPLOYEE_GENERATOR", sequenceName="EMPLOYEE_IDEMPLOYEE_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEE_IDEMPLOYEE_GENERATOR")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true, nullable=false)
 	private Integer idemployee;
+
+	private Integer iduserconnect;
 
 	@Column(length=25)
 	private String mail;
@@ -33,28 +33,6 @@ public class Employee implements Serializable {
 	@Column(length=255)
 	private String surname;
 
-	//bi-directional many-to-one association to Userconnect
-	@ManyToOne
-	@JoinColumn(name="iduserconnect")
-	private Userconnect userconnect;
-
-	//bi-directional many-to-many association to Company
-	@ManyToMany
-	@JoinTable(
-		name="employeecompany"
-		, joinColumns={
-			@JoinColumn(name="idemployee", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idcompany", nullable=false)
-			}
-		)
-	private List<Company> companies;
-
-	//bi-directional many-to-one association to Internshipoffer
-	@OneToMany(mappedBy="employee")
-	private List<Internshipoffer> internshipoffers;
-
 	public Employee() {
 	}
 
@@ -64,6 +42,14 @@ public class Employee implements Serializable {
 
 	public void setIdemployee(Integer idemployee) {
 		this.idemployee = idemployee;
+	}
+
+	public Integer getIduserconnect() {
+		return this.iduserconnect;
+	}
+
+	public void setIduserconnect(Integer iduserconnect) {
+		this.iduserconnect = iduserconnect;
 	}
 
 	public String getMail() {
@@ -96,44 +82,6 @@ public class Employee implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
-	}
-
-	public Userconnect getUserconnect() {
-		return this.userconnect;
-	}
-
-	public void setUserconnect(Userconnect userconnect) {
-		this.userconnect = userconnect;
-	}
-
-	public List<Company> getCompanies() {
-		return this.companies;
-	}
-
-	public void setCompanies(List<Company> companies) {
-		this.companies = companies;
-	}
-
-	public List<Internshipoffer> getInternshipoffers() {
-		return this.internshipoffers;
-	}
-
-	public void setInternshipoffers(List<Internshipoffer> internshipoffers) {
-		this.internshipoffers = internshipoffers;
-	}
-
-	public Internshipoffer addInternshipoffer(Internshipoffer internshipoffer) {
-		getInternshipoffers().add(internshipoffer);
-		internshipoffer.setEmployee(this);
-
-		return internshipoffer;
-	}
-
-	public Internshipoffer removeInternshipoffer(Internshipoffer internshipoffer) {
-		getInternshipoffers().remove(internshipoffer);
-		internshipoffer.setEmployee(null);
-
-		return internshipoffer;
 	}
 
 }

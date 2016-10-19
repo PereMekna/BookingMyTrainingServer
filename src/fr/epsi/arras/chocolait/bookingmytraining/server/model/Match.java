@@ -27,16 +27,6 @@ public class Match implements Serializable {
 
 	private Boolean traineeshipok;
 
-	//bi-directional many-to-one association to Internshipoffer
-	@ManyToOne
-	@JoinColumn(name="idinternshipoffer", nullable=false, insertable=false, updatable=false)
-	private Internshipoffer internshipoffer;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee", nullable=false, insertable=false, updatable=false)
-	private Trainee trainee;
-
 	public Match() {
 	}
 
@@ -78,22 +68,6 @@ public class Match implements Serializable {
 
 	public void setTraineeshipok(Boolean traineeshipok) {
 		this.traineeshipok = traineeshipok;
-	}
-
-	public Internshipoffer getInternshipoffer() {
-		return this.internshipoffer;
-	}
-
-	public void setInternshipoffer(Internshipoffer internshipoffer) {
-		this.internshipoffer = internshipoffer;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

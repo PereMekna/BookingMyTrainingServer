@@ -11,12 +11,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="internshipreview")
-@NamedQuery(name="Internshipreview.findAll", query="SELECT i FROM Internshipreview i")
-public class Internshipreview implements Serializable {
+@NamedQuery(name="Internshipreview.findAll", query="SELECT i FROM InternshipReview i")
+public class InternshipReview implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private InternshipreviewPK id;
+	private InternshipReviewPK id;
 
 	private Boolean consulted;
 
@@ -28,24 +28,14 @@ public class Internshipreview implements Serializable {
 
 	private double score;
 
-	//bi-directional many-to-one association to Internshipoffer
-	@ManyToOne
-	@JoinColumn(name="idinternshipoffer", nullable=false, insertable=false, updatable=false)
-	private Internshipoffer internshipoffer;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee", nullable=false, insertable=false, updatable=false)
-	private Trainee trainee;
-
-	public Internshipreview() {
+	public InternshipReview() {
 	}
 
-	public InternshipreviewPK getId() {
+	public InternshipReviewPK getId() {
 		return this.id;
 	}
 
-	public void setId(InternshipreviewPK id) {
+	public void setId(InternshipReviewPK id) {
 		this.id = id;
 	}
 
@@ -79,22 +69,6 @@ public class Internshipreview implements Serializable {
 
 	public void setScore(double score) {
 		this.score = score;
-	}
-
-	public Internshipoffer getInternshipoffer() {
-		return this.internshipoffer;
-	}
-
-	public void setInternshipoffer(Internshipoffer internshipoffer) {
-		this.internshipoffer = internshipoffer;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

@@ -10,61 +10,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tagdistribution")
-@NamedQuery(name="Tagdistribution.findAll", query="SELECT t FROM Tagdistribution t")
-public class Tagdistribution implements Serializable {
+@NamedQuery(name="Tagdistribution.findAll", query="SELECT t FROM TagDistribution t")
+public class TagDistribution implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private TagdistributionPK id;
+	private TagDistributionPK id;
 
-	//bi-directional many-to-one association to Internshipoffer
-	@ManyToOne
-	@JoinColumn(name="idinternshipoffer", nullable=false, insertable=false, updatable=false)
-	private Internshipoffer internshipoffer;
-
-	//bi-directional many-to-one association to Tag
-	@ManyToOne
-	@JoinColumn(name="idtag", nullable=false, insertable=false, updatable=false)
-	private Tag tag;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee", nullable=false, insertable=false, updatable=false)
-	private Trainee trainee;
-
-	public Tagdistribution() {
+	public TagDistribution() {
 	}
 
-	public TagdistributionPK getId() {
+	public TagDistributionPK getId() {
 		return this.id;
 	}
 
-	public void setId(TagdistributionPK id) {
+	public void setId(TagDistributionPK id) {
 		this.id = id;
-	}
-
-	public Internshipoffer getInternshipoffer() {
-		return this.internshipoffer;
-	}
-
-	public void setInternshipoffer(Internshipoffer internshipoffer) {
-		this.internshipoffer = internshipoffer;
-	}
-
-	public Tag getTag() {
-		return this.tag;
-	}
-
-	public void setTag(Tag tag) {
-		this.tag = tag;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

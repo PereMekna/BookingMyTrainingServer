@@ -11,34 +11,25 @@ import java.util.Date;
  */
 @Entity
 @Table(name="internshipofferview")
-@NamedQuery(name="Internshipofferview.findAll", query="SELECT i FROM Internshipofferview i")
-public class Internshipofferview implements Serializable {
+@NamedQuery(name="Internshipofferview.findAll", query="SELECT i FROM InternshipOfferView i")
+public class InternshipOfferView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private InternshipofferviewPK id;
+	private InternshipOfferViewPK id;
 
 	@Temporal(TemporalType.DATE)
+	@Column(insertable=false)
 	private Date dateview;
 
-	//bi-directional many-to-one association to Internshipoffer
-	@ManyToOne
-	@JoinColumn(name="idinternshipoffer", nullable=false, insertable=false, updatable=false)
-	private Internshipoffer internshipoffer;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee", nullable=false, insertable=false, updatable=false)
-	private Trainee trainee;
-
-	public Internshipofferview() {
+	public InternshipOfferView() {
 	}
 
-	public InternshipofferviewPK getId() {
+	public InternshipOfferViewPK getId() {
 		return this.id;
 	}
 
-	public void setId(InternshipofferviewPK id) {
+	public void setId(InternshipOfferViewPK id) {
 		this.id = id;
 	}
 
@@ -48,22 +39,6 @@ public class Internshipofferview implements Serializable {
 
 	public void setDateview(Date dateview) {
 		this.dateview = dateview;
-	}
-
-	public Internshipoffer getInternshipoffer() {
-		return this.internshipoffer;
-	}
-
-	public void setInternshipoffer(Internshipoffer internshipoffer) {
-		this.internshipoffer = internshipoffer;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

@@ -2,7 +2,6 @@ package fr.epsi.arras.chocolait.bookingmytraining.server.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -16,9 +15,8 @@ public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="COMPANY_IDCOMPANY_GENERATOR", sequenceName="COMPANY_IDCOMPANY_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="COMPANY_IDCOMPANY_GENERATOR")
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(insertable=false, unique=true, nullable=false)
 	private Integer idcompany;
 
 	private Integer employeenb;
@@ -31,14 +29,6 @@ public class Company implements Serializable {
 	private Integer traineenb;
 
 	private double traineeshipbonus;
-
-	//bi-directional many-to-one association to Companyreview
-	@OneToMany(mappedBy="company")
-	private List<Companyreview> companyreviews;
-
-	//bi-directional many-to-many association to Employee
-	@ManyToMany(mappedBy="companies")
-	private List<Employee> employees;
 
 	public Company() {
 	}
@@ -89,36 +79,6 @@ public class Company implements Serializable {
 
 	public void setTraineeshipbonus(double traineeshipbonus) {
 		this.traineeshipbonus = traineeshipbonus;
-	}
-
-	public List<Companyreview> getCompanyreviews() {
-		return this.companyreviews;
-	}
-
-	public void setCompanyreviews(List<Companyreview> companyreviews) {
-		this.companyreviews = companyreviews;
-	}
-
-	public Companyreview addCompanyreview(Companyreview companyreview) {
-		getCompanyreviews().add(companyreview);
-		companyreview.setCompany(this);
-
-		return companyreview;
-	}
-
-	public Companyreview removeCompanyreview(Companyreview companyreview) {
-		getCompanyreviews().remove(companyreview);
-		companyreview.setCompany(null);
-
-		return companyreview;
-	}
-
-	public List<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
 	}
 
 }

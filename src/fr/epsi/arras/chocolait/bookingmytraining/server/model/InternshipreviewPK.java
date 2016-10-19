@@ -8,17 +8,17 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class InternshipreviewPK implements Serializable {
+public class InternshipReviewPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtrainee;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idinternshipoffer;
 
-	public InternshipreviewPK() {
+	public InternshipReviewPK() {
 	}
 	public Integer getIdtrainee() {
 		return this.idtrainee;
@@ -37,10 +37,10 @@ public class InternshipreviewPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof InternshipreviewPK)) {
+		if (!(other instanceof InternshipReviewPK)) {
 			return false;
 		}
-		InternshipreviewPK castOther = (InternshipreviewPK)other;
+		InternshipReviewPK castOther = (InternshipReviewPK)other;
 		return 
 			this.idtrainee.equals(castOther.idtrainee)
 			&& this.idinternshipoffer.equals(castOther.idinternshipoffer);

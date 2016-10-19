@@ -11,12 +11,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="companyreview")
-@NamedQuery(name="Companyreview.findAll", query="SELECT c FROM Companyreview c")
-public class Companyreview implements Serializable {
+@NamedQuery(name="Companyreview.findAll", query="SELECT c FROM CompanyReview c")
+public class CompanyReview implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private CompanyreviewPK id;
+	private CompanyReviewPK id;
 
 	@Temporal(TemporalType.DATE)
 	private Date datereview;
@@ -26,24 +26,14 @@ public class Companyreview implements Serializable {
 
 	private double score;
 
-	//bi-directional many-to-one association to Company
-	@ManyToOne
-	@JoinColumn(name="idcompany", nullable=false, insertable=false, updatable=false)
-	private Company company;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee", nullable=false, insertable=false, updatable=false)
-	private Trainee trainee;
-
-	public Companyreview() {
+	public CompanyReview() {
 	}
 
-	public CompanyreviewPK getId() {
+	public CompanyReviewPK getId() {
 		return this.id;
 	}
 
-	public void setId(CompanyreviewPK id) {
+	public void setId(CompanyReviewPK id) {
 		this.id = id;
 	}
 
@@ -69,22 +59,6 @@ public class Companyreview implements Serializable {
 
 	public void setScore(double score) {
 		this.score = score;
-	}
-
-	public Company getCompany() {
-		return this.company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

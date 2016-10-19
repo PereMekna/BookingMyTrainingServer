@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.ControllerAbstract;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.helloworld.HelloWorldController;
+import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userConnectController.UserConnectController;
+import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userSignUpController.UserSignUpController;
 
 /**
  * Servlet implementation class MainServlet
@@ -25,6 +26,8 @@ public class MainServlet extends HttpServlet {
 	public void init() throws ServletException {
 		listController = new ArrayList<ControllerAbstract>();
 		listController.add(new HelloWorldController());
+		listController.add(new UserConnectController());
+		listController.add(new UserSignUpController());
 	}
 
 	/**

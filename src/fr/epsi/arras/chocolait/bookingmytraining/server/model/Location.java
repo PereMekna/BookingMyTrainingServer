@@ -15,21 +15,17 @@ public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="LOCATION_IDLOCATION_GENERATOR", sequenceName="LOCATION_IDLOCATION_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOCATION_IDLOCATION_GENERATOR")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true, nullable=false)
 	private Integer idlocation;
+
+	private Integer idtrainee;
 
 	private double lat;
 
 	private double longi;
 
 	private double radius;
-
-	//bi-directional many-to-one association to Trainee
-	@ManyToOne
-	@JoinColumn(name="idtrainee")
-	private Trainee trainee;
 
 	public Location() {
 	}
@@ -40,6 +36,14 @@ public class Location implements Serializable {
 
 	public void setIdlocation(Integer idlocation) {
 		this.idlocation = idlocation;
+	}
+
+	public Integer getIdtrainee() {
+		return this.idtrainee;
+	}
+
+	public void setIdtrainee(Integer idtrainee) {
+		this.idtrainee = idtrainee;
 	}
 
 	public double getLat() {
@@ -64,14 +68,6 @@ public class Location implements Serializable {
 
 	public void setRadius(double radius) {
 		this.radius = radius;
-	}
-
-	public Trainee getTrainee() {
-		return this.trainee;
-	}
-
-	public void setTrainee(Trainee trainee) {
-		this.trainee = trainee;
 	}
 
 }

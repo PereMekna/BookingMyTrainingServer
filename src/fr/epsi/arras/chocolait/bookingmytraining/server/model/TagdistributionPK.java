@@ -8,20 +8,20 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class TagdistributionPK implements Serializable {
+public class TagDistributionPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idinternshipoffer;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtag;
 
-	@Column(insertable=false, updatable=false, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtrainee;
 
-	public TagdistributionPK() {
+	public TagDistributionPK() {
 	}
 	public Integer getIdinternshipoffer() {
 		return this.idinternshipoffer;
@@ -46,10 +46,10 @@ public class TagdistributionPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof TagdistributionPK)) {
+		if (!(other instanceof TagDistributionPK)) {
 			return false;
 		}
-		TagdistributionPK castOther = (TagdistributionPK)other;
+		TagDistributionPK castOther = (TagDistributionPK)other;
 		return 
 			this.idinternshipoffer.equals(castOther.idinternshipoffer)
 			&& this.idtag.equals(castOther.idtag)
