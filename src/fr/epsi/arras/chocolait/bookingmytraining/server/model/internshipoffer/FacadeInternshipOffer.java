@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.Employee;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.InternshipOffer;
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.InternshipOfferView;
 
 public class FacadeInternshipOffer {
 	private EntityManager entityManager = Persistence.createEntityManagerFactory("BookingMyTraining")
@@ -52,5 +53,23 @@ public class FacadeInternshipOffer {
 		transac.begin();
 		entityManager.persist(internshipOffer);
 		transac.commit();
+	}
+	
+	public void createOfferView(InternshipOfferView internshipOfferView) {
+		EntityTransaction transac = entityManager.getTransaction();
+		transac.begin();
+		entityManager.persist(internshipOfferView);
+		transac.commit();
+	}
+	
+	public List<InternshipOfferView> getAllOfferViews() {
+		Query query = entityManager.createQuery("select iof from InternshipOfferView iof");
+		List<InternshipOfferView> listInternshipOfferViews;
+		try {
+			listInternshipOfferViews = query.getResultList();
+		} catch (final NoResultException e) {
+			return null;
+		}
+		return listInternshipOfferViews;
 	}
 }
