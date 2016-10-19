@@ -25,7 +25,7 @@
         	<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
         	<property name="javax.persistence.jdbc.password" value="postgres"/>
         	<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://vps329172.ovh.net:5432/BookingMyTraining"/>
-    	    <property name="javax.persistence.jdbc.user" value="postgres"/>>
+    	    <property name="javax.persistence.jdbc.user" value="postgres"/>
     	</properties>
 	</persistence-unit>
 </persistence>
