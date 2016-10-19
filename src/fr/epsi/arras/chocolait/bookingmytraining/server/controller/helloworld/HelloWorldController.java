@@ -14,7 +14,7 @@ public class HelloWorldController extends ControllerAbstract {
 	
 	@Override
 	public String getURI() {
-		return "/BookingMyTrainingServer/HelloWorld.api";
+		return "/HelloWorld.api";
 	}
 
 	@Override
