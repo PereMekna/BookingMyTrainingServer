@@ -6,6 +6,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.Employee;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.Trainee;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.UserConnect;
 
@@ -37,10 +38,24 @@ public class FacadeUser {
 		return false;
 	}
 	
-	public void signUpTrainee(UserConnect userConnect) {
+	public void signUpUserConnect(UserConnect userConnect) {
 		EntityTransaction transac = entityManager.getTransaction();
 		transac.begin();
 		entityManager.persist(userConnect);
+		transac.commit();
+	}
+	
+	public void signUpTrainee(Trainee trainee) {
+		EntityTransaction transac = entityManager.getTransaction();
+		transac.begin();
+		entityManager.persist(trainee);
+		transac.commit();
+	}
+	
+	public void signUpEmployee(Employee employee) {
+		EntityTransaction transac = entityManager.getTransaction();
+		transac.begin();
+		entityManager.persist(employee);
 		transac.commit();
 	}
 }

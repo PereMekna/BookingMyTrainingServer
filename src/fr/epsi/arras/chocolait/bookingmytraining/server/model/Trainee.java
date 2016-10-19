@@ -13,9 +13,10 @@ import javax.persistence.*;
 @NamedQuery(name="Trainee.findAll", query="SELECT t FROM Trainee t")
 public class Trainee extends UserAbstract implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="TRAINEE_IDTRAINEE_GENERATOR", sequenceName="TRAINEE_IDTRAINEE_SEQ", initialValue=1000, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TRAINEE_IDTRAINEE_GENERATOR")
 	@Column(unique=true, nullable=false)
 	private Integer idtrainee;
 

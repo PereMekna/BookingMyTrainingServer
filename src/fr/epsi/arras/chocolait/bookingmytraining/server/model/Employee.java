@@ -15,7 +15,8 @@ public class Employee extends UserAbstract implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="EMPLOYEE_IDTRAINEE_GENERATOR", sequenceName="EMPLOYEE_IDTRAINEE_SEQ", initialValue=1000, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEE_IDTRAINEE_GENERATOR")
 	@Column(unique=true, nullable=false)
 	private Integer idemployee;
 
