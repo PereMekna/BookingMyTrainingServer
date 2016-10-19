@@ -4,27 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the internshipofferview database table.
+ * The primary key class for the companyreview database table.
  * 
  */
 @Embeddable
-public class InternshipOfferViewPK implements Serializable {
+public class CompanyReviewPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(updatable=true, unique=true, nullable=false)
-	private Integer idinternshipoffer;
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
+	private Integer idcompany;
 
-	@Column(updatable=true, unique=true, nullable=false)
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtrainee;
 
-	public InternshipOfferViewPK() {
+	public CompanyReviewPK() {
 	}
-	public Integer getIdinternshipoffer() {
-		return this.idinternshipoffer;
+	public Integer getIdcompany() {
+		return this.idcompany;
 	}
-	public void setIdinternshipoffer(Integer idinternshipoffer) {
-		this.idinternshipoffer = idinternshipoffer;
+	public void setIdcompany(Integer idcompany) {
+		this.idcompany = idcompany;
 	}
 	public Integer getIdtrainee() {
 		return this.idtrainee;
@@ -37,19 +37,19 @@ public class InternshipOfferViewPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof InternshipOfferViewPK)) {
+		if (!(other instanceof CompanyReviewPK)) {
 			return false;
 		}
-		InternshipOfferViewPK castOther = (InternshipOfferViewPK)other;
+		CompanyReviewPK castOther = (CompanyReviewPK)other;
 		return 
-			this.idinternshipoffer.equals(castOther.idinternshipoffer)
+			this.idcompany.equals(castOther.idcompany)
 			&& this.idtrainee.equals(castOther.idtrainee);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.idinternshipoffer.hashCode();
+		hash = hash * prime + this.idcompany.hashCode();
 		hash = hash * prime + this.idtrainee.hashCode();
 		
 		return hash;

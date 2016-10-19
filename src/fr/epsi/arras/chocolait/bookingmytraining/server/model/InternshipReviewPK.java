@@ -4,27 +4,21 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the companyreview database table.
+ * The primary key class for the internshipreview database table.
  * 
  */
 @Embeddable
-public class CompanyReviewPK implements Serializable {
+public class InternshipReviewPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	@Column(insertable=true, updatable=false, unique=true, nullable=false)
-	private Integer idcompany;
-
-	@Column(insertable=true, updatable=false, unique=true, nullable=false)
 	private Integer idtrainee;
 
-	public CompanyReviewPK() {
-	}
-	public Integer getIdcompany() {
-		return this.idcompany;
-	}
-	public void setIdcompany(Integer idcompany) {
-		this.idcompany = idcompany;
+	@Column(insertable=true, updatable=false, unique=true, nullable=false)
+	private Integer idinternshipoffer;
+
+	public InternshipReviewPK() {
 	}
 	public Integer getIdtrainee() {
 		return this.idtrainee;
@@ -32,25 +26,31 @@ public class CompanyReviewPK implements Serializable {
 	public void setIdtrainee(Integer idtrainee) {
 		this.idtrainee = idtrainee;
 	}
+	public Integer getIdinternshipoffer() {
+		return this.idinternshipoffer;
+	}
+	public void setIdinternshipoffer(Integer idinternshipoffer) {
+		this.idinternshipoffer = idinternshipoffer;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof CompanyReviewPK)) {
+		if (!(other instanceof InternshipReviewPK)) {
 			return false;
 		}
-		CompanyReviewPK castOther = (CompanyReviewPK)other;
+		InternshipReviewPK castOther = (InternshipReviewPK)other;
 		return 
-			this.idcompany.equals(castOther.idcompany)
-			&& this.idtrainee.equals(castOther.idtrainee);
+			this.idtrainee.equals(castOther.idtrainee)
+			&& this.idinternshipoffer.equals(castOther.idinternshipoffer);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.idcompany.hashCode();
 		hash = hash * prime + this.idtrainee.hashCode();
+		hash = hash * prime + this.idinternshipoffer.hashCode();
 		
 		return hash;
 	}
