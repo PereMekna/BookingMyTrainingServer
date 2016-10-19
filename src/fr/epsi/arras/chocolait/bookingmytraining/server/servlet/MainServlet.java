@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.ControllerAbstract;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.helloworld.HelloWorldController;
+import fr.epsi.arras.chocolait.bookingmytraining.server.controller.internshipOfferController.InternshipOfferController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userConnectController.UserConnectController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userSignUpController.UserSignUpController;
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.InternshipOffer;
 
 /**
  * Servlet implementation class MainServlet
@@ -28,6 +30,7 @@ public class MainServlet extends HttpServlet {
 		listController.add(new HelloWorldController());
 		listController.add(new UserConnectController());
 		listController.add(new UserSignUpController());
+		listController.add(new InternshipOfferController());
 	}
 
 	/**

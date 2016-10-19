@@ -16,7 +16,8 @@ public class InternshipOffer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="INTERNSHIPOFFER_IDINTERNSHIPOFFER_GENERATOR", sequenceName="INTERNSHIPOFFER_IDINTERNSHIPOFFER_SEQ", initialValue=1000, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INTERNSHIPOFFER_IDINTERNSHIPOFFER_GENERATOR")
 	@Column(unique=true, nullable=false)
 	private Integer idinternshipoffer;
 
