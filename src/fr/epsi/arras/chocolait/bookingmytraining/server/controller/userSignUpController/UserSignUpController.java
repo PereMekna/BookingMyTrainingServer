@@ -42,7 +42,7 @@ public class UserSignUpController extends ControllerAbstract {
 				FACADE_USER.signUpTrainee(trainee);
 				return gson.toJson(trainee);
 			}
-			if ("true".equals(request.getParameter("isEmployee"))) {
+			if ("false".equals(request.getParameter("isTrainee"))) {
 				Employee employee = new Employee();
 				employee.setName(request.getParameter("name"));
 				employee.setSurname(request.getParameter("surname"));

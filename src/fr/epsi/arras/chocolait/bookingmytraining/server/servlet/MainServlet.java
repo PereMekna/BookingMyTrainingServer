@@ -14,6 +14,7 @@ import fr.epsi.arras.chocolait.bookingmytraining.server.controller.ControllerAbs
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.helloworld.HelloWorldController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.internshipOfferController.InternshipOfferController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.internshipofferview.InternshipOfferViewController;
+import fr.epsi.arras.chocolait.bookingmytraining.server.controller.match.MatchController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.tinderforcompany.TraineeController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userConnectController.UserConnectController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userSignUpController.UserSignUpController;
@@ -35,6 +36,7 @@ public class MainServlet extends HttpServlet {
 		listController.add(new InternshipOfferController());
 		listController.add(new TraineeController());
 		listController.add(new InternshipOfferViewController());
+		listController.add(new MatchController());
 	}
 
 	/**

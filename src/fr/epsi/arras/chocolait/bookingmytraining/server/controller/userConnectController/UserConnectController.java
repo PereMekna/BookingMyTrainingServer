@@ -2,6 +2,9 @@ package fr.epsi.arras.chocolait.bookingmytraining.server.controller.userConnectC
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 import com.google.gson.Gson;
 
@@ -19,11 +22,18 @@ public class UserConnectController extends ControllerAbstract {
 
 	@Override
 	public String getResponse(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		Gson gson = new Gson();
-		String mail = request.getParameter("mail");
-		String password = request.getParameter("password");
-		if (FACADE_USER.isUserExisting(mail, password)) {
+		final String mail = request.getParameter("mail");
+		final String password = request.getParameter("password");
+		if (session.getAttribute("mail") != null) {
 			return gson.toJson(true);
+		}
+		if (mail != null && password != null) {
+			if (FACADE_USER.isUserExisting(mail, DigestUtils.sha1Hex(password))) {
+				session.setAttribute("mail", mail);
+				return gson.toJson(true);
+			}
 		}
 		return gson.toJson(false);
 	}
