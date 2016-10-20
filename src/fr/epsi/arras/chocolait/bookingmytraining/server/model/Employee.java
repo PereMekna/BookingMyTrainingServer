@@ -15,15 +15,12 @@ public class Employee extends UserAbstract implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="EMPLOYEE_IDTRAINEE_GENERATOR", sequenceName="EMPLOYEE_IDTRAINEE_SEQ", initialValue=1000, allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEE_IDTRAINEE_GENERATOR")
+	@SequenceGenerator(name="EMPLOYEE_IDEMPLOYEE_GENERATOR", sequenceName="EMPLOYEE_IDEMPLOYEE_SEQ", initialValue=1000, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEE_IDEMPLOYEE_GENERATOR")
 	@Column(unique=true, nullable=false)
 	private Integer idemployee;
 
 	private Integer iduserconnect;
-
-	@Column(length=25)
-	private String mail;
 
 	@Column(length=255)
 	private String name;
@@ -51,14 +48,6 @@ public class Employee extends UserAbstract implements Serializable {
 
 	public void setIduserconnect(Integer iduserconnect) {
 		this.iduserconnect = iduserconnect;
-	}
-
-	public String getMail() {
-		return this.mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
 	}
 
 	public String getName() {

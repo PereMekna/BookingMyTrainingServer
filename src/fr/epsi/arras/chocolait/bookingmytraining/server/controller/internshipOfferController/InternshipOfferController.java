@@ -28,6 +28,7 @@ public class InternshipOfferController extends ControllerAbstract {
 		final String description = request.getParameter("description");
 		final String profile = request.getParameter("profile");
 		final String mission = request.getParameter("mission");
+		final String idUserConnect = request.getParameter("idUserConnect");
 		final Date datePublication = new Date();
 		final Integer traineeNb = 0;
 		Integer level = 0;
@@ -55,6 +56,11 @@ public class InternshipOfferController extends ControllerAbstract {
 			FACADE_INTERNSHIP_OFFER.createOffer(internshipOffer);
 			return gson.toJson(internshipOffer);
 		}
+		
+		if (idUserConnect != null) {
+			return gson.toJson(FACADE_INTERNSHIP_OFFER.getInternshipOfferByIdUserConnect(Integer.parseInt(idUserConnect)));
+		}
+		
 
 		return gson.toJson(FACADE_INTERNSHIP_OFFER.getAllOffers());
 	}

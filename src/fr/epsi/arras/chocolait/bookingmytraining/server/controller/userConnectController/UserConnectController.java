@@ -9,6 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import com.google.gson.Gson;
 
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.ControllerAbstract;
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.UserConnect;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.userconnect.FacadeUser;
 
 public class UserConnectController extends ControllerAbstract {
@@ -26,13 +27,15 @@ public class UserConnectController extends ControllerAbstract {
 		Gson gson = new Gson();
 		final String mail = request.getParameter("mail");
 		final String password = request.getParameter("password");
-		if (session.getAttribute("mail") != null) {
-			return gson.toJson(true);
+		final UserConnect userConnect = (UserConnect) session.getAttribute("userConnect");
+		if (userConnect != null) {
+			return gson.toJson(userConnect);
 		}
 		if (mail != null && password != null) {
 			if (FACADE_USER.isUserExisting(mail, DigestUtils.sha1Hex(password))) {
-				session.setAttribute("mail", mail);
-				return gson.toJson(true);
+				final UserConnect userConnectCreate = FACADE_USER.getUserConnectByMail(mail);
+				session.setAttribute("userConnect", userConnectCreate);
+				return gson.toJson(userConnectCreate);
 			}
 		}
 		return gson.toJson(false);

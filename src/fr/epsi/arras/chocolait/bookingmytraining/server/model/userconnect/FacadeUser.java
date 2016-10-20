@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.Employee;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.InternshipOffer;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.Trainee;
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.UserAbstract;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.UserConnect;
 
 public class FacadeUser {
@@ -82,5 +83,49 @@ public class FacadeUser {
 			return null;
 		}
 		return listTrainees;
+	}
+	
+	public UserConnect getUserConnectByMail(String mail) {
+		UserConnect userConnect;
+		Query query = entityManager.createQuery("select uc from UserConnect uc WHERE uc.mail='" + mail + "'");
+		try {
+			userConnect = (UserConnect) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+		return userConnect;
+	}
+	
+	public UserConnect getUserConnectById(Integer idUserConnect) {
+		UserConnect userConnect;
+		Query query = entityManager.createQuery("select uc from UserConnect uc WHERE uc.iduserconnect=" + idUserConnect);
+		try {
+			userConnect = (UserConnect) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+		return userConnect;
+	}
+	
+	public Boolean isEmployee(UserConnect userConnect) {
+		Query query = entityManager.createQuery("select e from Employee e WHERE idUserConnect="+userConnect.getIduserconnect());
+		Employee employee;
+		try {
+			employee = (Employee) query.getSingleResult();
+		} catch (NoResultException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public Boolean isTrainee(UserConnect userConnect) {
+		Query query = entityManager.createQuery("select t from Trainee t WHERE idUserConnect="+userConnect.getIduserconnect());
+		Trainee trainee;
+		try {
+			trainee = (Trainee) query.getSingleResult();
+		} catch (NoResultException e) {
+			return false;
+		}
+		return true;
 	}
 }

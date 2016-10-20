@@ -19,6 +19,7 @@ import fr.epsi.arras.chocolait.bookingmytraining.server.controller.tinderforcomp
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userConnectController.UserConnectController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.controller.userSignUpController.UserSignUpController;
 import fr.epsi.arras.chocolait.bookingmytraining.server.model.InternshipOffer;
+import fr.epsi.arras.chocolait.bookingmytraining.server.model.userconnect.UserUtilController;
 
 /**
  * Servlet implementation class MainServlet
@@ -37,6 +38,7 @@ public class MainServlet extends HttpServlet {
 		listController.add(new TraineeController());
 		listController.add(new InternshipOfferViewController());
 		listController.add(new MatchController());
+		listController.add(new UserUtilController());
 	}
 
 	/**
@@ -57,6 +59,10 @@ public class MainServlet extends HttpServlet {
 			if ((request.getContextPath() + controller.getURI()).equals(request.getRequestURI())) {
 				response.setContentType("application/json");
 				PrintWriter out = response.getWriter();
+		        response.addHeader("Access-Control-Allow-Origin", "*");
+		        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+		        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+		        response.addHeader("Access-Control-Max-Age", "1728000");
 
 				out.println(controller.getResponse(request, response));
 			}
